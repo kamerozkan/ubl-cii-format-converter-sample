@@ -1,0 +1,228 @@
+{
+  "contractVersion": "einvoice-suite-result/1.0.0",
+  "actorName": "ubl-cii-format-converter",
+  "itemId": "local-contract-example",
+  "inputIndex": 0,
+  "fileName": "01.01a-INVOICE_ubl.xml",
+  "producedAt": "2026-07-30T09:20:28.178860Z",
+  "processingStatus": "SUCCEEDED",
+  "conformanceStatus": "ACCEPTED",
+  "billable": false,
+  "scope": "SUPPORTED_EN16931_CORE_CONVERSION",
+  "source": {
+    "byteLength": 6742,
+    "container": "XML",
+    "documentType": "UBL_INVOICE",
+    "sha256": "3558d8eee6499350f69c150b54b4019556458667cfc972beaa9bb7bf1e11303f",
+    "sourceKind": "FILE",
+    "syntax": "UBL"
+  },
+  "normalizationStatus": {
+    "roundTrip": "COMPLETE",
+    "source": "COMPLETE",
+    "target": "COMPLETE"
+  },
+  "conversion": {
+    "engines": [
+      {
+        "diagnosticSha256": "58a141d593e319baa84738158f8fc42dfd0bdffd9e7ec8b5d8efaece63ba3c52",
+        "errorCount": 0,
+        "name": "phax-en16931-ubl2cii",
+        "sha256": "059c97c226fcf82e7f250c31ec6301221046e03c866a7e529e6d7142bbdc876c",
+        "version": "2.2.0",
+        "warningCount": 0
+      },
+      {
+        "diagnosticSha256": "e260af3dc343107ab8eae1e8d534890a523c14f442648d5de6e6dba1feabb0fb",
+        "errorCount": 0,
+        "name": "phax-en16931-cii2ubl",
+        "sha256": "76f94af1ac31888ce9e112c3a2d8c47e74c00ef9b63dc0a010707f3446558d0a",
+        "version": "3.1.7",
+        "warningCount": 0
+      }
+    ],
+    "missingInputs": [],
+    "roundTripRequired": true,
+    "semanticIntegrity": "LOSSLESS",
+    "sourceSyntax": "UBL",
+    "status": "CONVERTED",
+    "targetArtifact": {
+      "byteLength": 8209,
+      "mediaType": "application/xml",
+      "sha256": "b4346946b8362ce89715587401817187ce4ade47581a471b0e860c810c612881"
+    },
+    "targetDocumentType": "CII",
+    "targetSyntax": "CII"
+  },
+  "lossReport": {
+    "classification": "LOSSLESS",
+    "entries": [],
+    "schemaVersion": "semantic-loss-report/1.0.0",
+    "truncated": false
+  },
+  "roundTripDiff": {
+    "comparison": "CANONICAL_EN16931_SEMANTIC_MODEL",
+    "differences": [],
+    "performed": true,
+    "roundTripUnmappedCount": 0,
+    "schemaVersion": "semantic-round-trip-diff/1.0.0",
+    "sourceUnmappedCount": 0,
+    "status": "EQUIVALENT",
+    "truncated": false
+  },
+  "artifacts": {
+    "convertedXml": {
+      "byteLength": 8209,
+      "mediaType": "application/xml",
+      "sha256": "b4346946b8362ce89715587401817187ce4ade47581a471b0e860c810c612881",
+      "storageStatus": "PENDING"
+    },
+    "roundTripValidationReport": {
+      "byteLength": 11522,
+      "mediaType": "application/xml",
+      "sha256": "ab48a88ffe78e1439a524e908cf00df0652f3fed07ceef9ff44d7e2d92c00442",
+      "storageStatus": "PENDING"
+    },
+    "sourceValidationReport": {
+      "byteLength": 11522,
+      "mediaType": "application/xml",
+      "sha256": "ab48a88ffe78e1439a524e908cf00df0652f3fed07ceef9ff44d7e2d92c00442",
+      "storageStatus": "PENDING"
+    },
+    "targetValidationReport": {
+      "byteLength": 14273,
+      "mediaType": "application/xml",
+      "sha256": "d216fe16f9602001b5b5043e985e6aacb6f0046b4830fab21da5c75675f9bbb4",
+      "storageStatus": "PENDING"
+    }
+  },
+  "invoice": {
+    "schema": {
+      "name": "en16931-invoice",
+      "version": "1.0.0"
+    },
+    "document": {
+      "invoiceCurrencyCode": "EUR",
+      "invoiceNumber": "123456XX",
+      "invoiceTypeCode": "380",
+      "issueDate": "2016-04-04",
+      "noteSubjects": [
+        {
+          "noteIndex": 0,
+          "subjectCode": "ADU"
+        }
+      ],
+      "notes": [
+        "Es gelten unsere Allgem. Geschäftsbedingungen, die Sie unter […] finden."
+      ]
+    },
+    "process": {
+      "businessProcessIdentifier": "urn:fdc:peppol.eu:2017:poacc:billing:01:1.0",
+      "specificationIdentifier": "urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0"
+    },
+    "references": {
+      "buyerReference": "04011000-12345-03",
+      "invoicedObjectIdentifiers": [],
+      "precedingInvoices": []
+    },
+    "parties": {
+      "seller": {
+        "name": "[Seller name]"
+      },
+      "buyer": {
+        "name": "[Buyer name]"
+      }
+    },
+    "lines": [
+      {
+        "id": "Zeitschrift [...]",
+        "quantity": {
+          "unitCode": "XPP",
+          "value": "1"
+        },
+        "netAmount": {
+          "amount": "288.79",
+          "currency": "EUR"
+        },
+        "item": {
+          "name": "Zeitschrift [...]"
+        },
+        "vat": {
+          "categoryCode": "S",
+          "rate": "7"
+        }
+      },
+      {
+        "id": "Porto + Versandkosten",
+        "quantity": {
+          "unitCode": "XPP",
+          "value": "1"
+        },
+        "netAmount": {
+          "amount": "26.07",
+          "currency": "EUR"
+        },
+        "item": {
+          "name": "Porto + Versandkosten"
+        },
+        "vat": {
+          "categoryCode": "S",
+          "rate": "7"
+        }
+      }
+    ],
+    "vatBreakdowns": [
+      {
+        "categoryCode": "S",
+        "rate": "7",
+        "taxAmount": {
+          "amount": "22.04",
+          "currency": "EUR"
+        },
+        "taxableAmount": {
+          "amount": "314.86",
+          "currency": "EUR"
+        }
+      }
+    ],
+    "totals": {
+      "amountDue": {
+        "amount": "336.9",
+        "currency": "EUR"
+      },
+      "invoiceTotalExcludingVat": {
+        "amount": "314.86",
+        "currency": "EUR"
+      },
+      "invoiceTotalIncludingVat": {
+        "amount": "336.9",
+        "currency": "EUR"
+      },
+      "lineNetTotal": {
+        "amount": "314.86",
+        "currency": "EUR"
+      },
+      "vatTotals": [
+        {
+          "amount": "22.04",
+          "currency": "EUR"
+        }
+      ]
+    }
+  },
+  "report": {
+    "schema": {
+      "name": "conversion-technical-conformance-report",
+      "version": "1.0.0"
+    },
+    "overall": "CONFORMANT",
+    "scope": {
+      "authenticity": "NOT_ASSESSED",
+      "legalValidity": "NOT_ASSESSED",
+      "recipientAcceptance": "NOT_ASSESSED",
+      "semanticComparison": "EVALUATED",
+      "taxRecognition": "NOT_ASSESSED",
+      "technicalConformance": "EVALUATED"
+    }
+  }
+}
