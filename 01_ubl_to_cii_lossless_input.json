@@ -1,0 +1,17 @@
+{
+  "documents": [
+    {
+      "documentId": "local-contract-example",
+      "fileName": "01.01a-INVOICE_ubl.xml",
+      "url": "https://raw.githubusercontent.com/itplr-kosit/xrechnung-testsuite/b3791d47a2e1446b1751a27cb732aac294231293/src/test/business-cases/standard/01.01a-INVOICE_ubl.xml"
+    }
+  ],
+  "sourceSyntax": "UBL",
+  "targetSyntax": "CII",
+  "targetRuleset": "EN16931_CORE",
+  "roundTripCheck": true,
+  "storeConvertedXml": true,
+  "storeSourceXml": false,
+  "storeTechnicalReports": false,
+  "maxFindingsPerDocument": 20
+}
