@@ -1,0 +1,273 @@
+{
+  "contractVersion": "einvoice-suite-result/1.0.0",
+  "actorName": "ubl-cii-format-converter",
+  "itemId": "local-contract-example",
+  "inputIndex": 0,
+  "fileName": "CII_business_example_01.xml",
+  "producedAt": "2026-07-30T09:20:32.425242Z",
+  "processingStatus": "SUCCEEDED",
+  "conformanceStatus": "ACCEPTED",
+  "billable": false,
+  "scope": "SUPPORTED_EN16931_CORE_CONVERSION",
+  "source": {
+    "byteLength": 26758,
+    "container": "XML",
+    "documentType": "CII",
+    "sha256": "2ce8286333f4c2019166c505642963e1222f54c18558ae4210fd41fd5d526b2f",
+    "sourceKind": "FILE",
+    "syntax": "CII"
+  },
+  "normalizationStatus": {
+    "roundTrip": "COMPLETE",
+    "source": "PARTIAL",
+    "target": "COMPLETE"
+  },
+  "conversion": {
+    "engines": [
+      {
+        "diagnosticSha256": "29b0c452e0655019e8f0b8275046f6f98d4f708642076c8017bdb42f56e12977",
+        "errorCount": 0,
+        "name": "phax-en16931-cii2ubl",
+        "sha256": "76f94af1ac31888ce9e112c3a2d8c47e74c00ef9b63dc0a010707f3446558d0a",
+        "version": "3.1.7",
+        "warningCount": 0
+      },
+      {
+        "diagnosticSha256": "c00492293590fbf023a9cdc8a17ad25156bb7f6e99cefc4a53cbe45a2867a239",
+        "errorCount": 0,
+        "name": "phax-en16931-ubl2cii",
+        "sha256": "059c97c226fcf82e7f250c31ec6301221046e03c866a7e529e6d7142bbdc876c",
+        "version": "2.2.0",
+        "warningCount": 0
+      }
+    ],
+    "missingInputs": [],
+    "roundTripRequired": true,
+    "semanticIntegrity": "LOSS_DETECTED",
+    "sourceSyntax": "CII",
+    "status": "CONVERTED",
+    "targetArtifact": {
+      "byteLength": 17098,
+      "mediaType": "application/xml",
+      "sha256": "52ce1e81f5276bcabe6fc21639a4ca6ebbfcbb4692656cd40070911d906e6676"
+    },
+    "targetDocumentType": "UBL_INVOICE",
+    "targetSyntax": "UBL"
+  },
+  "lossReport": {
+    "classification": "LOSS_DETECTED",
+    "entries": [
+      {
+        "businessTermIds": [],
+        "canonicalPath": "/unmapped",
+        "classification": "SOURCE_UNMAPPED",
+        "reasonCode": "CII_SOURCE_COVERAGE_UNPROVEN",
+        "severity": "BLOCKING",
+        "sourcePath": "/rsm:CrossIndustryInvoice"
+      }
+    ],
+    "roundTripDifferences": [],
+    "roundTripUnmappedCount": 1,
+    "schemaVersion": "semantic-loss-report/1.0.0",
+    "truncated": false
+  },
+  "roundTripDiff": {
+    "comparison": "CANONICAL_EN16931_SEMANTIC_MODEL",
+    "differences": [],
+    "performed": true,
+    "roundTripUnmappedCount": 0,
+    "schemaVersion": "semantic-round-trip-diff/1.0.0",
+    "sourceUnmappedCount": 1,
+    "status": "DIFFERENT",
+    "truncated": false
+  },
+  "artifacts": {
+    "convertedXml": {
+      "byteLength": 17098,
+      "mediaType": "application/xml",
+      "sha256": "52ce1e81f5276bcabe6fc21639a4ca6ebbfcbb4692656cd40070911d906e6676",
+      "storageStatus": "PENDING"
+    },
+    "roundTripValidationReport": {
+      "byteLength": 34589,
+      "mediaType": "application/xml",
+      "sha256": "0d4c385a1b88dff56361cb716e98a585e290317d5dbcb28bd0ebcfad117850de",
+      "storageStatus": "PENDING"
+    },
+    "sourceValidationReport": {
+      "byteLength": 34917,
+      "mediaType": "application/xml",
+      "sha256": "736b89a5b823daac1296a701cc83315e6f554e7dcca746f6d2e967e823866228",
+      "storageStatus": "PENDING"
+    },
+    "targetValidationReport": {
+      "byteLength": 29329,
+      "mediaType": "application/xml",
+      "sha256": "b34088a3283d54faeb59e7e4c6d3eaa954611ee2dd6ba722b87dc1f9b887eabd",
+      "storageStatus": "PENDING"
+    }
+  },
+  "invoice": {
+    "schema": {
+      "name": "en16931-invoice",
+      "version": "1.0.0"
+    },
+    "document": {
+      "dueDate": "2013-07-20",
+      "invoiceCurrencyCode": "NOK",
+      "invoiceNumber": "TOSL108",
+      "invoiceTypeCode": "380",
+      "issueDate": "2013-06-30",
+      "notes": [
+        "Ordered in our booth at the convention"
+      ],
+      "taxPointDate": "2013-06-30"
+    },
+    "process": {
+      "specificationIdentifier": "urn:cen.eu:en16931:2017"
+    },
+    "references": {
+      "buyerAccountingReference": "Project cost code 123",
+      "contractReference": "Contract321",
+      "invoicedObjectIdentifiers": [],
+      "precedingInvoices": [],
+      "purchaseOrderReference": "123"
+    },
+    "parties": {
+      "seller": {
+        "name": "Salescompany ltd."
+      },
+      "buyer": {
+        "name": "The Buyercompany"
+      }
+    },
+    "lines": [
+      {
+        "id": "1",
+        "quantity": {
+          "unitCode": "NAR",
+          "value": "1"
+        },
+        "netAmount": {
+          "amount": "1273",
+          "currency": "NOK"
+        },
+        "item": {
+          "name": "Laptop computer"
+        },
+        "vat": {
+          "categoryCode": "S",
+          "rate": "25"
+        }
+      },
+      {
+        "id": "2",
+        "quantity": {
+          "unitCode": "NAR",
+          "value": "-1"
+        },
+        "netAmount": {
+          "amount": "-3.96",
+          "currency": "NOK"
+        },
+        "item": {
+          "name": "Returned \"Advanced computing\" book"
+        },
+        "vat": {
+          "categoryCode": "S",
+          "rate": "15"
+        }
+      }
+    ],
+    "vatBreakdowns": [
+      {
+        "categoryCode": "S",
+        "rate": "25",
+        "taxAmount": {
+          "amount": "365.13",
+          "currency": "NOK"
+        },
+        "taxableAmount": {
+          "amount": "1460.5",
+          "currency": "NOK"
+        }
+      },
+      {
+        "categoryCode": "S",
+        "rate": "15",
+        "taxAmount": {
+          "amount": "0.15",
+          "currency": "NOK"
+        },
+        "taxableAmount": {
+          "amount": "1",
+          "currency": "NOK"
+        }
+      },
+      {
+        "categoryCode": "E",
+        "exemptionReason": "Exempt New Means of Transport",
+        "rate": "0",
+        "taxAmount": {
+          "amount": "0",
+          "currency": "NOK"
+        },
+        "taxableAmount": {
+          "amount": "-25",
+          "currency": "NOK"
+        }
+      }
+    ],
+    "totals": {
+      "allowanceTotal": {
+        "amount": "100",
+        "currency": "NOK"
+      },
+      "amountDue": {
+        "amount": "801.78",
+        "currency": "NOK"
+      },
+      "chargeTotal": {
+        "amount": "100",
+        "currency": "NOK"
+      },
+      "invoiceTotalExcludingVat": {
+        "amount": "1436.5",
+        "currency": "NOK"
+      },
+      "invoiceTotalIncludingVat": {
+        "amount": "1801.78",
+        "currency": "NOK"
+      },
+      "lineNetTotal": {
+        "amount": "1436.5",
+        "currency": "NOK"
+      },
+      "paidAmount": {
+        "amount": "1000",
+        "currency": "NOK"
+      },
+      "vatTotals": [
+        {
+          "amount": "365.28",
+          "currency": "NOK"
+        }
+      ]
+    }
+  },
+  "report": {
+    "schema": {
+      "name": "conversion-technical-conformance-report",
+      "version": "1.0.0"
+    },
+    "overall": "CONFORMANT",
+    "scope": {
+      "authenticity": "NOT_ASSESSED",
+      "legalValidity": "NOT_ASSESSED",
+      "recipientAcceptance": "NOT_ASSESSED",
+      "semanticComparison": "EVALUATED",
+      "taxRecognition": "NOT_ASSESSED",
+      "technicalConformance": "EVALUATED"
+    }
+  }
+}
