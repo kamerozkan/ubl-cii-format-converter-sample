@@ -1,0 +1,553 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": true,
+  "definitions": {
+    "normalizedInvoice": {
+      "type": "object",
+      "title": "Normalized EN 16931 invoice",
+      "additionalProperties": true,
+      "properties": {
+        "schema": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "name": {
+              "type": "string",
+              "enum": [
+                "en16931-invoice"
+              ]
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "name",
+            "version"
+          ]
+        },
+        "document": {
+          "type": "object"
+        },
+        "process": {
+          "type": "object"
+        },
+        "references": {
+          "type": "object"
+        },
+        "parties": {
+          "type": "object"
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "documentAllowancesCharges": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "vatBreakdowns": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paymentInstructions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "supportingDocuments": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "extensions": {
+          "type": "array"
+        },
+        "unmapped": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "schema",
+        "document",
+        "lines"
+      ]
+    },
+    "artifactMetadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "mediaType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "storageStatus": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "STORED",
+            "NOT_REQUESTED",
+            "NOT_AVAILABLE",
+            "STORE_FAILED"
+          ]
+        },
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "conversion": {
+      "type": "object",
+      "title": "Conversion outcome",
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "CONVERTED",
+            "NEEDS_INPUT",
+            "UNSUPPORTED",
+            "NOT_EVALUATED"
+          ]
+        },
+        "sourceSyntax": {
+          "type": "string",
+          "enum": [
+            "UBL",
+            "CII"
+          ]
+        },
+        "targetSyntax": {
+          "type": "string",
+          "enum": [
+            "UBL",
+            "CII"
+          ]
+        },
+        "roundTripRequired": {
+          "type": "boolean"
+        },
+        "missingInputs": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "appliedOverrides": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "engines": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "targetArtifact": {
+          "$ref": "#/definitions/artifactMetadata"
+        },
+        "semanticIntegrity": {
+          "type": "string"
+        },
+        "upgrade": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "status",
+        "missingInputs",
+        "targetArtifact"
+      ]
+    },
+    "semanticDifference": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "canonicalPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "classification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "BLOCKING",
+            "WARNING",
+            "INFO"
+          ]
+        },
+        "businessTermIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sourceValueHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "targetValueHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "canonicalPath",
+        "classification",
+        "severity"
+      ]
+    },
+    "lossReport": {
+      "type": "object",
+      "title": "Semantic loss report",
+      "additionalProperties": true,
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "enum": [
+            "semantic-loss-report/1.0.0"
+          ]
+        },
+        "classification": {
+          "type": "string",
+          "enum": [
+            "LOSSLESS",
+            "LOSS_DETECTED",
+            "INDETERMINATE"
+          ]
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/semanticDifference"
+          }
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "classification",
+        "entries"
+      ]
+    },
+    "semanticComparison": {
+      "type": "object",
+      "title": "Canonical semantic comparison",
+      "additionalProperties": true,
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "enum": [
+            "semantic-round-trip-diff/1.0.0"
+          ]
+        },
+        "performed": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "EQUIVALENT",
+            "DIFFERENT",
+            "NOT_PERFORMED"
+          ]
+        },
+        "comparison": {
+          "type": "string",
+          "enum": [
+            "CANONICAL_EN16931_SEMANTIC_MODEL"
+          ]
+        },
+        "differences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/semanticDifference"
+          }
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "performed",
+        "status",
+        "comparison",
+        "differences"
+      ]
+    },
+    "technicalReport": {
+      "type": "object",
+      "title": "Technical conformance report",
+      "additionalProperties": true,
+      "properties": {
+        "schema": {
+          "type": "object"
+        },
+        "overall": {
+          "type": "string",
+          "enum": [
+            "CONFORMANT",
+            "NON_CONFORMANT",
+            "INDETERMINATE"
+          ]
+        },
+        "assessments": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "scope": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema",
+        "overall"
+      ]
+    }
+  },
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "title": "Contract version",
+      "enum": [
+        "einvoice-suite-result/1.0.0"
+      ]
+    },
+    "actorName": {
+      "type": "string",
+      "title": "Actor",
+      "enum": [
+        "ubl-cii-format-converter"
+      ]
+    },
+    "itemId": {
+      "type": "string",
+      "title": "Item ID",
+      "minLength": 1
+    },
+    "inputIndex": {
+      "type": "integer",
+      "title": "Input index"
+    },
+    "fileName": {
+      "type": "string",
+      "title": "File name",
+      "minLength": 1
+    },
+    "processingStatus": {
+      "type": "string",
+      "title": "Processing",
+      "enum": [
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "conformanceStatus": {
+      "type": "string",
+      "title": "Technical assessment",
+      "enum": [
+        "ACCEPTED",
+        "REJECTED",
+        "NOT_EVALUATED"
+      ]
+    },
+    "billable": {
+      "type": "boolean",
+      "title": "Billable result"
+    },
+    "scope": {
+      "type": "string",
+      "title": "Product scope"
+    },
+    "source": {
+      "type": "object",
+      "title": "Detected source",
+      "additionalProperties": true,
+      "properties": {
+        "sourceKind": {
+          "type": "string"
+        },
+        "container": {
+          "type": "string"
+        },
+        "syntax": {
+          "type": "string"
+        },
+        "documentType": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "invoice": {
+      "$ref": "#/definitions/normalizedInvoice"
+    },
+    "normalizationStatus": {
+      "title": "Normalization",
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "NOT_PERFORMED",
+            "PARTIAL_SUPPRESSED"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "COMPLETE",
+              "PARTIAL",
+              "NOT_PERFORMED",
+              "PARTIAL_SUPPRESSED"
+            ]
+          }
+        }
+      ]
+    },
+    "normalizationProvenance": {
+      "type": "object",
+      "title": "Normalization source preparation evidence"
+    },
+    "container": {
+      "type": "object",
+      "title": "PDF container evidence"
+    },
+    "artifacts": {
+      "type": "object",
+      "title": "Optional stored artifacts",
+      "additionalProperties": {
+        "$ref": "#/definitions/artifactMetadata"
+      }
+    },
+    "report": {
+      "$ref": "#/definitions/technicalReport"
+    },
+    "conversion": {
+      "$ref": "#/definitions/conversion"
+    },
+    "lossReport": {
+      "$ref": "#/definitions/lossReport"
+    },
+    "roundTripDiff": {
+      "$ref": "#/definitions/semanticComparison"
+    },
+    "migrationDiff": {
+      "$ref": "#/definitions/semanticComparison"
+    },
+    "sourceValidation": {
+      "type": "object",
+      "title": "Source validation evidence"
+    },
+    "peppol": {
+      "type": "object",
+      "title": "Peppol document scope"
+    },
+    "peppolScope": {
+      "type": "object",
+      "title": "Peppol document-only scope"
+    },
+    "validationDurationMs": {
+      "type": "integer",
+      "title": "Validation duration in milliseconds",
+      "minimum": 0
+    },
+    "targetValidationDurationMs": {
+      "type": "integer",
+      "title": "Target validation duration in milliseconds",
+      "minimum": 0
+    },
+    "error": {
+      "type": "object",
+      "title": "Processing error",
+      "additionalProperties": true,
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "producedAt": {
+      "type": "string",
+      "title": "Produced at",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "contractVersion",
+    "actorName",
+    "itemId",
+    "inputIndex",
+    "fileName",
+    "processingStatus",
+    "conformanceStatus",
+    "billable",
+    "scope",
+    "producedAt"
+  ],
+  "$id": "https://raw.githubusercontent.com/kamerozkan/ubl-cii-format-converter-sample/main/dataset_record.schema.json",
+  "title": "EN 16931 UBL CII Format Converter Dataset record",
+  "description": "One fail-closed result row from the production e-invoice suite Dataset contract."
+}
