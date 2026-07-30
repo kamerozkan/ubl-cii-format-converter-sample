@@ -1,0 +1,249 @@
+{
+  "contractVersion": "einvoice-suite-result/1.0.0",
+  "actorName": "ubl-cii-format-converter",
+  "itemId": "local-contract-example",
+  "inputIndex": 0,
+  "fileName": "ubl-tc434-creditnote1.xml",
+  "producedAt": "2026-07-30T09:20:37.317691Z",
+  "processingStatus": "SUCCEEDED",
+  "conformanceStatus": "ACCEPTED",
+  "billable": false,
+  "scope": "SUPPORTED_EN16931_CORE_CONVERSION",
+  "source": {
+    "byteLength": 4935,
+    "container": "XML",
+    "documentType": "UBL_CREDIT_NOTE",
+    "sha256": "911d7ac2cb4fa72d21331c76914468e7d94eda03629e0def75c64ab18e3e9dce",
+    "sourceKind": "FILE",
+    "syntax": "UBL"
+  },
+  "normalizationStatus": {
+    "roundTrip": "COMPLETE",
+    "source": "COMPLETE",
+    "target": "PARTIAL"
+  },
+  "conversion": {
+    "engines": [
+      {
+        "diagnosticSha256": "c05d212ffb732641affeff6b7e4829b81b4e3a0bc18dcf9cc24f69b4db519779",
+        "errorCount": 0,
+        "name": "phax-en16931-ubl2cii",
+        "sha256": "059c97c226fcf82e7f250c31ec6301221046e03c866a7e529e6d7142bbdc876c",
+        "version": "2.2.0",
+        "warningCount": 0
+      },
+      {
+        "diagnosticSha256": "fb94a98cc684303c96530a8c8ed09d053c223e710efe59b5a8e9afe0a9b24a82",
+        "errorCount": 0,
+        "name": "phax-en16931-cii2ubl",
+        "sha256": "76f94af1ac31888ce9e112c3a2d8c47e74c00ef9b63dc0a010707f3446558d0a",
+        "version": "3.1.7",
+        "warningCount": 0
+      }
+    ],
+    "missingInputs": [],
+    "roundTripRequired": true,
+    "semanticIntegrity": "LOSS_DETECTED",
+    "sourceSyntax": "UBL",
+    "status": "CONVERTED",
+    "targetArtifact": {
+      "byteLength": 6782,
+      "mediaType": "application/xml",
+      "sha256": "3d1ca89067cbf260840b5f8345fa8eb5aaa9b49a8079a405c23c4353fa8c8ebf"
+    },
+    "targetDocumentType": "CII",
+    "targetSyntax": "CII"
+  },
+  "lossReport": {
+    "classification": "LOSS_DETECTED",
+    "entries": [
+      {
+        "businessTermIds": [
+          "BT-84",
+          "BT-86"
+        ],
+        "canonicalPath": "/paymentInstructions/0/creditTransferAccount",
+        "classification": "DROPPED",
+        "severity": "BLOCKING",
+        "sourceType": "DICT",
+        "sourceValueHash": "a209f8f9a8757d2f6f40345a191d550400608b09b5d4aaf5fb586ef5fe23e5cd"
+      },
+      {
+        "businessTermIds": [],
+        "canonicalPath": "/unmapped",
+        "classification": "TARGET_UNMAPPED",
+        "reasonCode": "CII_SOURCE_COVERAGE_UNPROVEN",
+        "severity": "BLOCKING",
+        "targetPath": "/rsm:CrossIndustryInvoice"
+      }
+    ],
+    "roundTripDifferences": [
+      {
+        "businessTermIds": [
+          "BT-84",
+          "BT-86"
+        ],
+        "canonicalPath": "/paymentInstructions/0/creditTransferAccount",
+        "classification": "DROPPED",
+        "severity": "BLOCKING",
+        "sourceType": "DICT",
+        "sourceValueHash": "a209f8f9a8757d2f6f40345a191d550400608b09b5d4aaf5fb586ef5fe23e5cd"
+      }
+    ],
+    "roundTripUnmappedCount": 0,
+    "schemaVersion": "semantic-loss-report/1.0.0",
+    "truncated": false
+  },
+  "roundTripDiff": {
+    "comparison": "CANONICAL_EN16931_SEMANTIC_MODEL",
+    "differences": [
+      {
+        "businessTermIds": [
+          "BT-84",
+          "BT-86"
+        ],
+        "canonicalPath": "/paymentInstructions/0/creditTransferAccount",
+        "classification": "DROPPED",
+        "severity": "BLOCKING",
+        "sourceType": "DICT",
+        "sourceValueHash": "a209f8f9a8757d2f6f40345a191d550400608b09b5d4aaf5fb586ef5fe23e5cd"
+      }
+    ],
+    "performed": true,
+    "roundTripUnmappedCount": 0,
+    "schemaVersion": "semantic-round-trip-diff/1.0.0",
+    "sourceUnmappedCount": 0,
+    "status": "DIFFERENT",
+    "truncated": false
+  },
+  "artifacts": {
+    "convertedXml": {
+      "byteLength": 6782,
+      "mediaType": "application/xml",
+      "sha256": "3d1ca89067cbf260840b5f8345fa8eb5aaa9b49a8079a405c23c4353fa8c8ebf",
+      "storageStatus": "PENDING"
+    },
+    "roundTripValidationReport": {
+      "byteLength": 9766,
+      "mediaType": "application/xml",
+      "sha256": "bf05507a412691a3abfe1e38693c2f4f30781f63b5dce303a6daf36eba3d20b5",
+      "storageStatus": "PENDING"
+    },
+    "sourceValidationReport": {
+      "byteLength": 9766,
+      "mediaType": "application/xml",
+      "sha256": "bf05507a412691a3abfe1e38693c2f4f30781f63b5dce303a6daf36eba3d20b5",
+      "storageStatus": "PENDING"
+    },
+    "targetValidationReport": {
+      "byteLength": 11530,
+      "mediaType": "application/xml",
+      "sha256": "752246963500bfbfc893b0ee3522fc4b6ff68531347176b389be934c95138e16",
+      "storageStatus": "PENDING"
+    }
+  },
+  "invoice": {
+    "schema": {
+      "name": "en16931-invoice",
+      "version": "1.0.0"
+    },
+    "document": {
+      "invoiceCurrencyCode": "EUR",
+      "invoiceNumber": "018304 / 28865",
+      "invoiceTypeCode": "381",
+      "issueDate": "2019-09-23",
+      "notes": []
+    },
+    "process": {
+      "businessProcessIdentifier": "urn:fdc:peppol.eu:2017:poacc:billing:01:1.0",
+      "specificationIdentifier": "urn:cen.eu:en16931:2017"
+    },
+    "references": {
+      "buyerReference": "018304 / 28865",
+      "invoicedObjectIdentifiers": [],
+      "precedingInvoices": []
+    },
+    "parties": {
+      "seller": {
+        "name": "My Supplier Company"
+      },
+      "buyer": {
+        "name": "My Customer Company"
+      }
+    },
+    "lines": [
+      {
+        "id": "1",
+        "quantity": {
+          "unitCode": "C62",
+          "value": "1"
+        },
+        "netAmount": {
+          "amount": "100.11",
+          "currency": "EUR"
+        },
+        "item": {
+          "name": "Exonération du versement du PP"
+        },
+        "vat": {
+          "categoryCode": "E",
+          "rate": "0"
+        }
+      }
+    ],
+    "vatBreakdowns": [
+      {
+        "categoryCode": "E",
+        "exemptionReason": "Taxes are not applicable",
+        "rate": "0",
+        "taxAmount": {
+          "amount": "0",
+          "currency": "EUR"
+        },
+        "taxableAmount": {
+          "amount": "100.11",
+          "currency": "EUR"
+        }
+      }
+    ],
+    "totals": {
+      "amountDue": {
+        "amount": "100.11",
+        "currency": "EUR"
+      },
+      "invoiceTotalExcludingVat": {
+        "amount": "100.11",
+        "currency": "EUR"
+      },
+      "invoiceTotalIncludingVat": {
+        "amount": "100.11",
+        "currency": "EUR"
+      },
+      "lineNetTotal": {
+        "amount": "100.11",
+        "currency": "EUR"
+      },
+      "vatTotals": [
+        {
+          "amount": "0",
+          "currency": "EUR"
+        }
+      ]
+    }
+  },
+  "report": {
+    "schema": {
+      "name": "conversion-technical-conformance-report",
+      "version": "1.0.0"
+    },
+    "overall": "CONFORMANT",
+    "scope": {
+      "authenticity": "NOT_ASSESSED",
+      "legalValidity": "NOT_ASSESSED",
+      "recipientAcceptance": "NOT_ASSESSED",
+      "semanticComparison": "EVALUATED",
+      "taxRecognition": "NOT_ASSESSED",
+      "technicalConformance": "EVALUATED"
+    }
+  }
+}
